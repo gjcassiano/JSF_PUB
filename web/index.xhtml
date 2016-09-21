@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/> <!-- organiza a tela-->
+   
+    <ui:include src="templetes/head.xhtml"/>
+    <link rel="stylesheet" href="BootStrap/css/bootstrap.min.css"/>
+
+ 
+  <div class="container-fluid">
+  <h1>Bem vindo ao PUB</h1>
+  Testendo Conexão com o Banco de Dados:  <h4><h:outputText value="#{acessoDB.conectar()}"></h:outputText></h4>
+  <p>This part is inside a .container-fluid class.</p>
+  <p>The .container-fluid class provides a full width container, spanning the entire width of the viewport.</p>
+</div>
+      <h:body>
+        <div class="row">
+
+
+            <!--MENU -->
+            <ui:include src="templetes/menu.xhtml"/>
+            <!--Content -->
+            <div class="col-md-8">
+
+                <ui:include src="templetes/gerenciar_atendente.xhtml"/>
+                <ui:include src="templetes/table_atendente.xhtml"/>
+
+            </div>
+
+        </div>
+  
+    </h:body>
+</html>
+

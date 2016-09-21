@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      
+     <p:dataTable  var="item" value="#{atendentesDAO.atendentes}">
+               <p:column headerText="Id">
+                    <h:outputText value="#{item.idAtendente}" />
+               </p:column>
+               <p:column headerText="Nome">
+                    <h:outputText value="#{item.nome}" />
+               </p:column>
+               <p:column headerText="Salario">
+                    <h:outputText value="#{item.salario}" />
+               </p:column>
+               <p:column headerText="Idade">
+                    <h:outputText value="#{item.idade}" />
+               </p:column>
+             <p:column headerText="Remover" style="width: 100px; text-align: center">
+                        <h:outputText value="#{item.idAtendente}" />
+                         <f:viewParam name="idcliente" value="#{item.idAtendente}"/>
+          
+                        <p:commandButton icon="ui-icon-close" type="uptade"  action="#{atendentesDAO.RemoverAtendente()}" />
+                      
+               </p:column>
+               
+         </p:dataTable>
+
+</html>
