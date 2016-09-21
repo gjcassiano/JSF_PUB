@@ -15,6 +15,7 @@ import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
@@ -28,9 +29,7 @@ public class AtendentesDAO {
         
         private List<Atendente> atendentes = new ArrayList<Atendente>();
      
-    /**
-     * @param atendentes the atendentes to set
-     */
+    
     public void setAtendentes(List<Atendente> atendentes) {
         this.atendentes = atendentes;
     }
@@ -125,10 +124,11 @@ public class AtendentesDAO {
             //FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação","NOME :" + this.getAtendente().getNome());
               //      RequestContext.getCurrentInstance().showMessageInDialog(message);  
      }
-     public String getIdcliente(FacesContext fc){
+     public String getIdcliente(){
+            FacesContext fc =  FacesContext.getCurrentInstance();
             Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
-                   
-               params.forEach((k,v) -> System.out.println("key: "+k+" value:"+v));
+            
+               params.forEach((k,v) -> System.out.println("K: "+k+" V:"+v));
 		return params.get("idcliente");
 
     }
@@ -137,7 +137,7 @@ public class AtendentesDAO {
          try {//"DELETE FROM `mydb`.`atendente` WHERE `atendente`.`idAtendente` = 12"?
                    
              
-			String  sqlcmd =  "DELETE FROM "+TABLE_NAME +" WHERE "+COL[0]+ "= "+getIdcliente(FacesContext.getCurrentInstance())+" )";
+			String  sqlcmd =  "DELETE FROM "+TABLE_NAME +" WHERE "+COL[0]+ "= "+getIdcliente()+" )";
                         System.out.println(sqlcmd);
 //                         FacesContext context = FacesContext.getCurrentInstance();
 //                     Map<String, String> paramMap = context.getExternalContext().getRequestParameterMap();

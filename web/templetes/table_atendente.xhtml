@@ -19,10 +19,10 @@
                </p:column>
              <p:column headerText="Remover" style="width: 100px; text-align: center">
                         <h:outputText value="#{item.idAtendente}" />
-                         <f:viewParam name="idcliente" value="#{item.idAtendente}"/>
-          
-                        <p:commandButton icon="ui-icon-close" type="uptade"  action="#{atendentesDAO.RemoverAtendente()}" />
-                      
+                        <f:metadata>
+                          <f:viewParam name="idcliente" value="#{item.idAtendente}"/>
+                        </f:metadata>
+                        <p:commandButton icon="ui-icon-close" type="uptade" actionListener="#{atendentesDAO.RemoverAtendente()}" />
                </p:column>
                
          </p:dataTable>
