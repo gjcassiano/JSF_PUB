@@ -4,11 +4,12 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     
+    
     <p:dialog header="Formulario de Cadastro" widgetVar="dlg2" modal="true" >
         
-                  <h:form>
+        <!-- don't remove this form-->
+        <h:form >
          <p:panelGrid class="ui-noborder" >  
-          
               <p:row> 
                    <p:column>
                 <h:outputLabel value="Id"></h:outputLabel>
@@ -71,20 +72,19 @@
                 </p:row>
              <p:row>
                  <p:column>
-                     <p:outputLabel value="Salvar atendente" />
-                     
+                     <p:outputLabel value="Salvar atendente" /> 
                  </p:column>
                      
                  <p:column>
-                     <p:commandButton value="Salvar"  type="submit"  action="#{atendentesDAO.SalvarAtendente()}" onclick="PF('dlg2').hide();"/>
+                     <p:commandButton value="Salvar" type="submit" id="ajax" update=":formtable:tableitems" action="#{atendentesDAO.SalvarAtendente()}" onclick="PF('dlg2').hide();"/>
                  </p:column>         
              </p:row>    
          </p:panelGrid>
  
-        </h:form>  
+        </h:form>
     </p:dialog> 
        <h:panelGrid columns="5" cellpadding="1">
-        <p:commandButton value="Cadastrar Atendente" update="corpoAtendente" type="button" onclick="PF('dlg2').show();" />
-
+        <p:commandButton value="Cadastrar Atendente"  type="button" onclick="PF('dlg2').show();" />
     </h:panelGrid>
+    
 </html>

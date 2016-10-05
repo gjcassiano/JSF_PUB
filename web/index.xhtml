@@ -1,20 +1,29 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html  xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1"/> <!-- organiza a tela-->
-   
-    <ui:include src="templetes/head.xhtml"/>
-    <link rel="stylesheet" href="BootStrap/css/bootstrap.min.css"/>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" 
+      xmlns:h1="http://xmlns.jcp.org/jsp/jstl/core" 
+      
+      >
+ 
+    <!--Load the cores of bootstrap -->
+    <script src="BootStrap/js/jquery-3.1.1.min.js"/>
     <script src="BootStrap/js/bootstrap.min.js"/>
     
-    <link src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></link>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"  crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="BootStrap/css/bootstrap.min.css"/>
 
-<img src="templetes/koothrappali.jpg" alt="..." class="img-circle pull-right view hm-zoom image-nerd"></img>
+   
+    
+    
+      <!-- organiza a tela-->
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>  
+    <img src="templetes/koothrappali.jpg" alt="..." class="img-circle pull-right view hm-zoom image-nerd"></img>
 
     
 <style type="text/css">
@@ -92,24 +101,18 @@
 
 </style>
     
-<div  class="jumbotron head-page">
-	<div class="container titulo-page">
-                 <h2>Nerd Pub
-                 </h2>
-                 <p>Cerveja de bits escovados</p>  
- 	</div>
+     <ui:insert name="head" >
+         <ui:include src="templetes/head.xhtml"/>   
+    </ui:insert> 
+   
+<div class="container">
+    <input type="button" id="clickme" value="Show Alert" />
 </div>
-    
+
       <h:body>
-        <!-- message's sucess-->
-        
-        <div  class="growl">
-            <p:growl life="100" sticky="true" />   
-        </div>
-        
-
+          
+ 
         <div class="row">
-
 
             <!--MENU -->
             <div class="row top-page">
@@ -123,10 +126,13 @@
                                         <i class = "glyphicon glyphicon-user pull-right"></i>
                                         <strong class="panel-title titulo-post-page">	<p href="">Atendentes</p></strong>            </div>
                                         
-                                        <div id = "corpoAtendente"  class="panel-body ">
-                                             <ui:include src="templetes/table_atendente.xhtml"/>
+                                        <div class="panel-body" >
+                                             <ui:insert name="content" >
+                                                <ui:include src="templetes/gerenciar_atendente.xhtml"/>
+                                                <ui:include src="templetes/table_atendente.xhtml"/>
+                                             </ui:insert> 
 
-                                              <ui:include src="templetes/gerenciar_atendente.xhtml"/>
+                                            
                                         </div>
                                     </div>
                                       <hr class="divider"></hr>
@@ -134,13 +140,11 @@
 
                              </div>
                          </div>
-
-           
-          
                
             </div>
         </div>
   
+             
     </h:body>
+      
 </html>
-

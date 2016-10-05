@@ -15,13 +15,10 @@ import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 @ManagedBean
-@ViewScoped
 public class AtendentesDAO {
     	private String TABLE_NAME = "atendente";
 	private String COL[] = {"idAtendente","nome","idade","dataEntrada","dataSaida","salario"};
@@ -35,24 +32,12 @@ public class AtendentesDAO {
     public void setAtendentes(List<Atendente> atendentes) {
         this.atendentes = atendentes;
     }
-
-    /**
-     * @return the atendente
-     */
     public Atendente getAtendente() {
         return atendente;
     }
-
-    /**
-     * @param atendente the atendente to set
-     */
     public void setAtendente(Atendente atendente) {
         this.atendente = atendente;
     }
-
- 
-
-   
         public enum cols{
             idAtendente,nome,idade,dataEntrada,dataSaid,salario
         }
@@ -83,38 +68,32 @@ public class AtendentesDAO {
                       //  System.out.println(at.getNome());
                         count++;
                     }
-                    //FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação", count + " atendentes cadastrados");
-                    //RequestContext.getCurrentInstance().showMessageInDialog(message);   
+                   //FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação", count + " atendentes cadastrados");
+                   //RequestContext.getCurrentInstance().showMessageInDialog(message);   
+                    // FacesContext context = FacesContext.getCurrentInstance();
+                     //     context.addMessage(null, new FacesMessage("Imformação",  "Atendente deletado com sucesso!") );
                     
+      
                     rs.close();
                     stmt.close();
                 } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
+                    System.out.println("Lista: " + ex.getMessage());
                 }
                
                 
                 return this.atendentes;
     }
-     
-     public void showMessage() {
-//        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "What we do in life", "Echoes in eternity.");
-//         RequestContext.getCurrentInstance().showMessageInDialog(message);    
-//       
-         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação", " atendentes cadastrados");
-                    RequestContext.getCurrentInstance().showMessageInDialog(message);   
-                    
-        
-    }
+   
      public void SalvarAtendente(){
+         //System.out.println("br.inatel.DAO.AtendentesDAO.SalvarAtendente()");
          	try {
 			
-			String  sqlcmd =    "INSERT INTO "+TABLE_NAME +" ( "+COL[0]+" , "+COL[1]+ " , " + COL[2] +" , "+ COL[3]+" , "+ COL[4]+" , "+ COL[5]+ ") values ('" +this.atendente.getIdAtendente() + "','" + this.atendente.getNome()+"','"+this.atendente.getIdade()+ "','" + "0000-00-00"+ "','" + "0000-00-00"+ "','" + this.atendente.getSalario()+"')";
+			String  sqlcmd = "INSERT INTO "+TABLE_NAME +" ( "+COL[0]+" , "+COL[1]+ " , " + COL[2] +" , "+ COL[3]+" , "+ COL[4]+" , "+ COL[5]+ ") values ('" +this.atendente.getIdAtendente() + "','" + this.atendente.getNome()+"','"+this.atendente.getIdade()+ "','" + "0000-00-00"+ "','" + "0000-00-00"+ "','" + this.atendente.getSalario()+"')";
                         System.out.println(sqlcmd);
                         Statement stm = AcessoDB.conexao.createStatement();
                         
                          stm.execute(sqlcmd);
-                        
-			//rs.close();
+                         //stm.close();
 			
 			
 		} catch (SQLException e) {
@@ -132,23 +111,28 @@ public class AtendentesDAO {
             return params.get(idToFind);
 
     }
+ 
+      
      public void RemoverAtendente(){
+        //System.out.println("br.inatel.DAO.AtendentesDAO.RemoverAtendente()");
+
          
          try {//"DELETE FROM `mydb`.`atendente` WHERE `atendente`.`idAtendente` = 12"?
                    
              
 			String  sqlcmd =  "DELETE FROM "+TABLE_NAME +" WHERE "+COL[0]+ "= "+getParameter("idCliente")+" ;";
-                        //System.out.println(sqlcmd);
+                        System.out.println(sqlcmd);
 
                         Statement stm = AcessoDB.conexao.createStatement();
                         
-                         stm.execute(sqlcmd);
+                        stm.execute(sqlcmd);
+                           FacesContext context = FacesContext.getCurrentInstance();
+                          context.addMessage(null, new FacesMessage("Imformação",  "Atendente deletado com sucesso!") );
+                    
                       //   FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação", "Deletado com sucesso!");
                     //RequestContext.getCurrentInstance().showMessageInDialog(message);  
                   
-                  //  FacesContext context = FacesContext.getCurrentInstance();
-                   // context.addMessage(null, new FacesMessage("Imformação",  "Atendente deletado com sucesso!") );
-      
+                  
                          
 		} catch (SQLException e) {
                      System.out.println("ERRO ao deletar!");

@@ -2,10 +2,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
- 
-   
-
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+    
+    
+    <h:form id ="formtable">
+       
+       
      <p:dataTable  id ="tableitems" var="item" value="#{atendentesDAO.atendentes}">
                <p:column headerText="Id">
                     <h:outputText value="#{item.idAtendente}" />
@@ -20,14 +23,13 @@
                     <h:outputText value="#{item.idade}" />
                </p:column>
              <p:column headerText="Remover" style="width: 100px; text-align: center">
-                        <h:outputText value="#{item.idAtendente}" />
-                      
-                          
-                        <p:commandButton icon="ui-icon-close" type="uptade" update="tableitems" actionListener="#{atendentesDAO.RemoverAtendente}" >
+                
+                        <p:commandButton icon="ui-icon-trash" id="ajax" update="tableitems" action="#{atendentesDAO.RemoverAtendente()}" >
                              <f:param name="idCliente" value="#{item.idAtendente}"/>
                           </p:commandButton>
                </p:column>
                
          </p:dataTable>
-
+    </h:form>
+    
 </html>
