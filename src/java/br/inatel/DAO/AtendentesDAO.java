@@ -16,10 +16,12 @@ import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 @ManagedBean
+@ViewScoped
 public class AtendentesDAO {
     	private String TABLE_NAME = "atendente";
 	private String COL[] = {"idAtendente","nome","idade","dataEntrada","dataSaida","salario"};
@@ -124,12 +126,10 @@ public class AtendentesDAO {
             //FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação","NOME :" + this.getAtendente().getNome());
               //      RequestContext.getCurrentInstance().showMessageInDialog(message);  
      }
-     public String getIdcliente(){
+     public String getParameter(String idToFind){
             FacesContext fc =  FacesContext.getCurrentInstance();
             Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
-            
-               params.forEach((k,v) -> System.out.println("K: "+k+" V:"+v));
-		return params.get("idcliente");
+            return params.get(idToFind);
 
     }
      public void RemoverAtendente(){
@@ -137,17 +137,22 @@ public class AtendentesDAO {
          try {//"DELETE FROM `mydb`.`atendente` WHERE `atendente`.`idAtendente` = 12"?
                    
              
-			String  sqlcmd =  "DELETE FROM "+TABLE_NAME +" WHERE "+COL[0]+ "= "+getIdcliente()+" )";
-                        System.out.println(sqlcmd);
-//                         FacesContext context = FacesContext.getCurrentInstance();
-//                     Map<String, String> paramMap = context.getExternalContext().getRequestParameterMap();
-//        
+			String  sqlcmd =  "DELETE FROM "+TABLE_NAME +" WHERE "+COL[0]+ "= "+getParameter("idCliente")+" ;";
+                        //System.out.println(sqlcmd);
+
                         Statement stm = AcessoDB.conexao.createStatement();
                         
                          stm.execute(sqlcmd);
+                      //   FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação", "Deletado com sucesso!");
+                    //RequestContext.getCurrentInstance().showMessageInDialog(message);  
+                  
+                  //  FacesContext context = FacesContext.getCurrentInstance();
+                   // context.addMessage(null, new FacesMessage("Imformação",  "Atendente deletado com sucesso!") );
+      
+                         
 		} catch (SQLException e) {
-                          FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação", "erro ao salvar atendente" + e.getMessage());
-                    RequestContext.getCurrentInstance().showMessageInDialog(message);   
+                     System.out.println("ERRO ao deletar!");
+                    System.out.println(e.getMessage());
                     
                 }
      }

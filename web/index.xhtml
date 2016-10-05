@@ -5,32 +5,140 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1"/> <!-- organiza a tela-->
    
     <ui:include src="templetes/head.xhtml"/>
     <link rel="stylesheet" href="BootStrap/css/bootstrap.min.css"/>
+    <script src="BootStrap/js/bootstrap.min.js"/>
+    
+    <link src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></link>
 
- 
-  <div class="container-fluid">
-  <h1>Bem vindo ao PUB</h1>
-  Testendo Conexão com o Banco de Dados:  <h4><h:outputText value="#{acessoDB.conectar()}"></h:outputText></h4>
-  <p>This part is inside a .container-fluid class.</p>
-  <p>The .container-fluid class provides a full width container, spanning the entire width of the viewport.</p>
+<img src="templetes/koothrappali.jpg" alt="..." class="img-circle pull-right view hm-zoom image-nerd"></img>
+
+    
+<style type="text/css">
+	
+	span.glyphicon {
+    font-size: 10.2em;}
+        .glyphicon{
+             font-size: 2.2em;
+        }
+    .top-page { 
+        margin-top:10px; 
+        margin-left:20px; 
+    
+    }
+    .image-nerd:hover {
+	-webkit-transform: rotate(15deg) scale(1.4);
+	transform: rotate(15deg) scale(1.4);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+        
+    }
+    .image-nerd {
+            -webkit-transform: rotate(0) scale(1);
+            transform: rotate(0) scale(1);
+            
+    }
+
+    .head-page{
+    	
+    	letter-spacing: 3px;
+    	background:#1E90FF; 
+    	border-bottom:solid; 
+    	border-width:1px;
+    	height: 200px;
+    }
+    .titulo-page{
+        font-variant: small-caps; 
+    	color: #FFFFFF;
+    }
+    .image-nerd{
+    	
+    	height: 200px;
+        width: 200px;
+    }
+    .titulo-post-page{
+		color: #1E90FF;
+		font-size: 25px;
+		
+    }
+    a:link {
+		text-decoration: none;
+		transition: all 0.3s ease;
+	}
+	a:hover {
+	    color: red;
+		text-decoration: none;
+	}
+    .titulo-post-page:a{
+		color: #1E90FF;
+		font-size: 20px;
+		
+    }
+    .btn-loguin-page{
+    	margin-bottom: 4px;
+
+    	display: block;
+    	background:#1E90FF; 
+    }
+    .btn-pagina-principal{
+    	margin-bottom: 10px;
+    	
+    	display: block;
+    	background:#1E90FF; 
+    }
+
+</style>
+    
+<div  class="jumbotron head-page">
+	<div class="container titulo-page">
+                 <h2>Nerd Pub
+                 </h2>
+                 <p>Cerveja de bits escovados</p>  
+ 	</div>
 </div>
+    
       <h:body>
+        <!-- message's sucess-->
+        
+        <div  class="growl">
+            <p:growl life="100" sticky="true" />   
+        </div>
+        
+
         <div class="row">
 
 
             <!--MENU -->
-            <ui:include src="templetes/menu.xhtml"/>
-            <!--Content -->
-            <div class="col-md-8">
+            <div class="row top-page">
+               <ui:include src="templetes/menu.xhtml"/>  
+               
+                         <!--Content -->
+                        <div class="content container bg-grey col-md-9">
+                             <div class="row">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i class = "glyphicon glyphicon-user pull-right"></i>
+                                        <strong class="panel-title titulo-post-page">	<p href="">Atendentes</p></strong>            </div>
+                                        
+                                        <div id = "corpoAtendente"  class="panel-body ">
+                                             <ui:include src="templetes/table_atendente.xhtml"/>
 
-                <ui:include src="templetes/gerenciar_atendente.xhtml"/>
-                <ui:include src="templetes/table_atendente.xhtml"/>
+                                              <ui:include src="templetes/gerenciar_atendente.xhtml"/>
+                                        </div>
+                                    </div>
+                                      <hr class="divider"></hr>
 
+
+                             </div>
+                         </div>
+
+           
+          
+               
             </div>
-
         </div>
   
     </h:body>

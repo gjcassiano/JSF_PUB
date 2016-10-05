@@ -4,11 +4,6 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     
-    <h:panelGrid columns="5" cellpadding="1">
-        <p:commandButton value="Cadastrar Atendente" type="button" onclick="PF('dlg2').show();" />
-
-    </h:panelGrid>
-    
     <p:dialog header="Formulario de Cadastro" widgetVar="dlg2" modal="true" >
         
                   <h:form>
@@ -88,4 +83,8 @@
  
         </h:form>  
     </p:dialog> 
+       <h:panelGrid columns="5" cellpadding="1">
+        <p:commandButton value="Cadastrar Atendente" update="corpoAtendente" type="button" onclick="PF('dlg2').show();" />
+
+    </h:panelGrid>
 </html>
