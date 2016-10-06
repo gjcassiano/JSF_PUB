@@ -85,7 +85,6 @@ public class AtendentesDAO {
     }
    
      public void SalvarAtendente(){
-         //System.out.println("br.inatel.DAO.AtendentesDAO.SalvarAtendente()");
          	try {
 			
 			String  sqlcmd = "INSERT INTO "+TABLE_NAME +" ( "+COL[0]+" , "+COL[1]+ " , " + COL[2] +" , "+ COL[3]+" , "+ COL[4]+" , "+ COL[5]+ ") values ('" +this.atendente.getIdAtendente() + "','" + this.atendente.getNome()+"','"+this.atendente.getIdade()+ "','" + "0000-00-00"+ "','" + "0000-00-00"+ "','" + this.atendente.getSalario()+"')";
@@ -93,17 +92,17 @@ public class AtendentesDAO {
                         Statement stm = AcessoDB.conexao.createStatement();
                         
                          stm.execute(sqlcmd);
-                         //stm.close();
+                         stm.close();
+			 showMessage("Atendente salvo com sucesso!");
 			
-			
+                         
 		} catch (SQLException e) {
                           FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação", "erro ao salvar atendente" + e.getMessage());
                     RequestContext.getCurrentInstance().showMessageInDialog(message);   
                     
                 }
 
-            //FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação","NOME :" + this.getAtendente().getNome());
-              //      RequestContext.getCurrentInstance().showMessageInDialog(message);  
+            
      }
      public String getParameter(String idToFind){
             FacesContext fc =  FacesContext.getCurrentInstance();
@@ -112,28 +111,20 @@ public class AtendentesDAO {
 
     }
  
-      
+     public void showMessage(String text){
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(text)); 
+     }
      public void RemoverAtendente(){
-        //System.out.println("br.inatel.DAO.AtendentesDAO.RemoverAtendente()");
 
-         
          try {//"DELETE FROM `mydb`.`atendente` WHERE `atendente`.`idAtendente` = 12"?
                    
              
 			String  sqlcmd =  "DELETE FROM "+TABLE_NAME +" WHERE "+COL[0]+ "= "+getParameter("idCliente")+" ;";
-                        System.out.println(sqlcmd);
-
+                        //System.out.println(sqlcmd);
                         Statement stm = AcessoDB.conexao.createStatement();
-                        
                         stm.execute(sqlcmd);
-                           FacesContext context = FacesContext.getCurrentInstance();
-                          context.addMessage(null, new FacesMessage("Imformação",  "Atendente deletado com sucesso!") );
-                    
-                      //   FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação", "Deletado com sucesso!");
-                    //RequestContext.getCurrentInstance().showMessageInDialog(message);  
-                  
-                  
-                         
+                     showMessage("Atendente deletado com sucesso!");
 		} catch (SQLException e) {
                      System.out.println("ERRO ao deletar!");
                     System.out.println(e.getMessage());
