@@ -1,0 +1,43 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    
+    <p:dialog header="Formulario de pedidos" widgetVar="dlg2" modal="true" resizable="false" >
+        <!-- don't remove this form-->
+        <h:form >
+            <p:panelGrid class="ui-g-6" styleClass="no-border"  columns="2" >  
+                
+
+  
+                <h:outputLabel value="Nome do cliente"></h:outputLabel>
+                
+                <p:selectOneMenu required="true" autoWidth="true" effect="true" value="#{pedidoDAO.pedido.cliente_idCliente}">
+                    <f:selectItem  id="Cliente_idCliente"   />
+                    <f:selectItems  value="#{pedidoDAO.getClientesEmAberto()}" />
+                 </p:selectOneMenu>
+                
+                <h:outputLabel value="Nome do atendente"></h:outputLabel>
+                
+                <p:selectOneMenu required="true"   autoWidth="true" effect="true" value="#{pedidoDAO.pedido.atendente_idAtendente}">
+                    <f:selectItem  id="Atendente_idAtendente"   />
+                    <f:selectItems  value="#{pedidoDAO.getAtendentesTrabalhando()}" />
+                 </p:selectOneMenu>
+                <h:outputLabel value="Numero da Mesa"></h:outputLabel>
+                <p:inputText id="numMesa" value="#{pedidoDAO.pedido.numMesa}"  type="Number"/>    
+                
+                
+         </p:panelGrid>
+            <p:commandButton style="height: 35px; padding: 0" class="ui-g-12" value="Salvar" type="submit" id="ajax" update=":formtable:tableitems" action="#{pedidoDAO.SalvarPedido}" onclick="PF('dlg2').hide();"/>
+        </h:form>
+    </p:dialog> 
+    
+       <h:panelGrid columns="5" cellpadding="1">
+        <p:commandButton value="Cadastrar Pedido" icon="ui-icon-document" type="button" onclick="PF('dlg2').show();" />
+        </h:panelGrid>
+    
+</html>

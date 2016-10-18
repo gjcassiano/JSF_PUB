@@ -7,31 +7,25 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     
-    <p:dialog header="Formulario de Cadastro" widgetVar="dlg2" modal="true" >
-        
+    <p:dialog header="Formulario de Cadastro" widgetVar="dlg2" modal="true" resizable="false" >
         <!-- don't remove this form-->
         <h:form >
-            <p:panelGrid styleClass="" columns="2" >  
-                
-                <h:outputLabel value="Id"></h:outputLabel>
-                <p:inputText id="id" value="#{atendentesDAO.atendente.idAtendente}" type="Number"/>
+            <p:panelGrid class="ui-g-6" styleClass="no-border"  columns="2" >  
                 <h:outputLabel value="Nome"></h:outputLabel>
                 <p:inputText id ="nome" value="#{atendentesDAO.atendente.nome}"/>
-                <h:outputLabel value="Data de Entregada" />
+                <h:outputLabel value="Data de entrada" />
                 <p:calendar locale="pt" showButtonPanel="true" value="#{atendentesDAO.atendente.dataEntrada}" navigator="true"
                         id="ptCal" showOn="button"></p:calendar>
-                <h:outputLabel value="Data de Saida" />
+                <h:outputLabel value="Data de saida" />
                 <p:calendar locale="pt" showButtonPanel="true" navigator="true" value="#{atendentesDAO.atendente.dataSaid}"
                         id="ptCal2" showOn="button"></p:calendar>
                 <h:outputLabel value="Salario"></h:outputLabel>
                 <p:inputText id="salario" value="#{atendentesDAO.atendente.salario}"  type="Number"/>
                 <h:outputLabel value="Idade"></h:outputLabel>
-                <p:inputText id="idade" value="#{atendentesDAO.atendente.idade}"  type="Number"/>
-                <p:outputLabel value="Salvar atendente" />
-                <p:commandButton value="Salvar" type="submit" id="ajax" update=":formtable:tableitems" action="#{atendentesDAO.SalvarAtendente()}" onclick="PF('dlg2').hide();"/>
-
+                <p:inputText id="idade" value="#{atendentesDAO.atendente.idade}"  type="Number"/>           
          </p:panelGrid>
- 
+            <p:commandButton style="height: 35px;text-align: center " class="ui-g-12" value="Salvar" type="submit" id="ajax" update=":formtable:tableitems" action="#{atendentesDAO.SalvarAtendente()}" onclick="PF('dlg2').hide();"/>
+         
         </h:form>
     </p:dialog> 
     

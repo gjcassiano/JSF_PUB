@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+    
+    
+    <h:form id ="formtable">
+        <!--don't remove this form and the page have only one p:message or p:growl, so, don't change this -->
+        <h:form id="msgform">
+            <p:messages id="messages" showDetail="false" autoUpdate="true"  closable="true" >
+                <p:effect type="pulsate" event="load" delay="500" />
+            </p:messages>  
+         
+        <!--
+             <p:growl id="growl" showDetail="false" life="1000" sticky="true"  />
+        -->
+         
+        </h:form>
+  
+        
+        <p:dataTable  id ="tableitems" var="item" value="#{clientesDAO.clientes}">
+               <p:column headerText="Id">
+                   <h:outputText value="#{item.idCliente}" />
+               </p:column>
+               <p:column headerText="Nome">
+                   <h:outputText value="#{item.nome}" />
+               </p:column>
+               <p:column headerText="Hora Chegada">
+                   <h:outputText value="#{item.hrChegada}" />
+               </p:column>
+               <p:column headerText="Hora Saida">
+                   <h:outputText value="#{item.hrSaida}" />
+               </p:column>
+               <p:column headerText="Forma Pagment">
+                   <h:outputText value="#{item.formPagmt}" />
+               </p:column>
+             
+             <p:column headerText="Remover" style="width: 100px; text-align: center">
+                        <!--Remove atendente-->
+                        <p:commandButton widgetVar="" icon="ui-icon-trash" id="ajax" process="@this" update="tableitems" action="#{clientesDAO.RemoverCliente}" >
+                            <f:param name="idCliente" value="#{item.idCliente}"/>
+                              <p:confirm header="Confirmação" message="Deseja deletar ?"/>
+                          </p:commandButton>
+                        
+                        
+                        <p:confirmDialog  global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton  value="Nao" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+               </p:column> 
+         </p:dataTable>
+    </h:form>
+    
+</html>

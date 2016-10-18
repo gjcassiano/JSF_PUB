@@ -5,7 +5,7 @@
  */
 package br.inatel.DAO;
 
-import br.inatel.bean.Atendente;
+import br.inatel.bean.Cliente;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,61 +19,62 @@ import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 @ManagedBean
-public class AtendentesDAO {
-    	private String TABLE_NAME = "atendente";
-	private String COL[] = {"idAtendente","nome","idade","dataEntrada","dataSaida","salario"};
+public class ClientesDAO {
+    	private String TABLE_NAME = "cliente";
+	private String COL[] = {"idCliente","nome","hrChegada","hrSaida","formaPagmt"};
         
         private AcessoDB acesso;
-        private Atendente atendente;
+        private Cliente cliente;
         
-        private List<Atendente> atendentes = new ArrayList<Atendente>();
+        private List<Cliente> clientes = new ArrayList<Cliente>();
+
+    /**
+     * @return the cliente
+     */
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
      
     
-    public void setAtendentes(List<Atendente> atendentes) {
-        this.atendentes = atendentes;
-    }
-    public Atendente getAtendente() {
-        return atendente;
-    }
-    public void setAtendente(Atendente atendente) {
-        this.atendente = atendente;
-    }
-        public enum cols{
-            idAtendente,nome,idade,dataEntrada,dataSaid,salario
-        }
         
-    public AtendentesDAO() {
-        atendente = new Atendente();
+  
+    public enum cols{
+          idAtendente,nome,idade,dataEntrada,dataSaid,salario
+      }
+        
+    public ClientesDAO() {
+        cliente = new Cliente();
         acesso = new AcessoDB();
         acesso.conectar();
     }
     
-    public List<Atendente> getAtendentes(){
+    public List<Cliente> getClientes(){
            
                 try {
                     Statement stmt;
                     stmt = AcessoDB.conexao.createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT * FROM "+TABLE_NAME);
-                    this.atendentes.clear();
+                    this.clientes.clear();
                     int count = 0;
                     while(rs.next()){
-                       Atendente at = new Atendente();
-                       at.setIdAtendente(rs.getString(COL[0]));
+                       Cliente at = new Cliente();
+                       at.setIdCliente(rs.getString(COL[0]));
                        at.setNome(rs.getString(COL[1]));
-                       at.setIdade(rs.getString(COL[2]));
-                       //at.setDataEntrada(rs.getString(COL[3]));
-                       //at.setDataSaid(rs.getString(COL[4]));
-                       at.setSalario(rs.getString(COL[5]));
-                       this.atendentes.add(at);
-                      //  System.out.println(at.getNome());
+                       at.setHrChegada(rs.getString(COL[2]));
+                       at.setHrSaida(rs.getString(COL[3]));
+                       at.setFormPagmt(rs.getString(COL[4]));
+
+                       this.clientes.add(at);
                         count++;
                     }
-                   //FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação", count + " atendentes cadastrados");
-                   //RequestContext.getCurrentInstance().showMessageInDialog(message);   
-                    // FacesContext context = FacesContext.getCurrentInstance();
-                     //     context.addMessage(null, new FacesMessage("Imformação",  "Atendente deletado com sucesso!") );
-                    
-      
+              
                     rs.close();
                     stmt.close();
                 } catch (SQLException ex) {
@@ -81,22 +82,21 @@ public class AtendentesDAO {
                 }
                
                 
-                return this.atendentes;
+                return this.clientes;
     }
-   
-     public void SalvarAtendente(){
+     public void SalvarCliente(){
          	try {
 			
-			String  sqlcmd = "INSERT INTO "+TABLE_NAME +" ( "+COL[1]+ " , " + COL[2] +" , "+ COL[3]+" , "+ COL[4]+" , "+ COL[5]+ ") values ('" + this.atendente.getNome()+"','"+this.atendente.getIdade()+ "','" + "0000-00-00"+ "','" + "0000-00-00"+ "','" + this.atendente.getSalario()+"')";
+			String  sqlcmd = "INSERT INTO "+TABLE_NAME +" ( "+COL[1]+ " , " + COL[2] +" , "+ COL[3]+" , "+ COL[4]+  ") values ('" + this.getCliente().getNome()+"','"+this.getCliente().getHrChegada() + "','" + this.getCliente().getHrSaida()+ "','" + this.getCliente().getFormPagmt()+"')";
                         System.out.println(sqlcmd);
                         Statement stm = AcessoDB.conexao.createStatement();
                         
                          stm.execute(sqlcmd);
                          stm.close();
-			 showMessage("Atendente salvo com sucesso!");
+			 showMessage(TABLE_NAME + " salvo com sucesso!");
                          
 		} catch (SQLException e) {
-                          FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação", "erro ao salvar atendente" + e.getMessage());
+                          FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação", "erro ao salvar "+TABLE_NAME + e.getMessage());
                     RequestContext.getCurrentInstance().showMessageInDialog(message);   
                     
                 }
@@ -114,19 +114,36 @@ public class AtendentesDAO {
             FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(text)); 
      }
-     public void RemoverAtendente(){
+     public void RemoverCliente(){
 
          try {//"DELETE FROM `mydb`.`atendente` WHERE `atendente`.`idAtendente` = 12"?
-			String  sqlcmd =  "DELETE FROM "+TABLE_NAME +" WHERE "+COL[0]+ "= "+getParameter("idCliente")+" ;";
+			String  sqlcmd =  "DELETE FROM "+TABLE_NAME +" WHERE "+COL[0]+ "= "+getParameter(COL[0])+" ;";
                         //System.out.println(sqlcmd);
                         Statement stm = AcessoDB.conexao.createStatement();
                         stm.execute(sqlcmd);
-                     showMessage("Atendente deletado com sucesso!");
+                     showMessage(TABLE_NAME+" deletado com sucesso!");
 		} catch (SQLException e) {
                      System.out.println("ERRO ao deletar!");
                     System.out.println(e.getMessage());
                     
                 }
+     }
+     public List<String> fomasDePagamento(){
+         List<String> tipos = new ArrayList<String>();
+           try {
+                    Statement stmt;
+                    stmt = AcessoDB.conexao.createStatement();
+                    ResultSet rs = stmt.executeQuery("SELECT * FROM formasDePagamento");
+                    while(rs.next()){
+                        tipos.add(rs.getString("tipo"));
+                    }
+              
+                    rs.close();
+                    stmt.close();
+                } catch (SQLException ex) {
+                }
+               
+         return tipos;
      }
     
         

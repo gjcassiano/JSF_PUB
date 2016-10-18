@@ -9,33 +9,27 @@
       xmlns:p="http://primefaces.org/ui"
       >
     
-      <ui:include src="templetes/header.xhtml"/>   
+      <ui:include src="templates/header.xhtml"/>   
     
       <h:body>
         <div class="row">
 
             <!--MENU -->
             <div class="row top-page">
-               <ui:include src="templetes/menu.xhtml"/>  
-               
+               <ui:include src="templates/menu.xhtml"/>  
                          <!--Content -->
                         <div class="content container bg-grey col-md-9">
                              <div class="row">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <i class = "glyphicon glyphicon-user pull-right"></i>
-                                        <strong class="panel-title titulo-post-page">	<p href="">Atendentes</p></strong>            </div>
-                                        
-                                        <div class="panel-body" >
-                                             <ui:insert name="content" >
-                                                <ui:include src="templetes/gerenciar_atendente.xhtml"/>
-                                                <ui:include src="templetes/table_atendente.xhtml"/>
-                                             </ui:insert> 
-                                        </div>
-                                    </div>
-                                      <hr class="divider"></hr>
-
-
+                                <!--here is content of page
+                                
+                                 <ui:include src="clientes.xhtml"/>
+                                 <ui:include src="atendentes.xhtml"/>                               
+                                
+                                -->
+                                 <ui:include src="pedidos.xhtml"/>
+                                 
+                                 <!--#######################################################-->
+                                 <hr class="divider"></hr>
                              </div>
                          </div>
                
