@@ -27,6 +27,15 @@
                     <f:selectItem  id="Atendente_idAtendente"   />
                     <f:selectItems  value="#{pedidoDAO.getAtendentesTrabalhando()}" />
                  </p:selectOneMenu>
+                
+                <h:outputLabel value="Nome do produto"></h:outputLabel>
+                
+                <p:selectOneMenu required="true"   autoWidth="true" effect="true" value="#{pedidoDAO.pedido.produto_idProduto}">
+                    <f:selectItem  id="Produto_idProduto"   />
+                    <f:selectItems  value="#{pedidoDAO.getProdutosDisponiveis()}" />
+                 </p:selectOneMenu>
+                
+                
                 <h:outputLabel value="Numero da Mesa"></h:outputLabel>
                 <p:inputText id="numMesa" value="#{pedidoDAO.pedido.numMesa}"  type="Number"/>    
                 

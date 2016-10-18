@@ -6,6 +6,7 @@ public class Pedido {
     private String pedidoConcluido ;
     private String Cliente_idCliente ;
     private String Atendente_idAtendente ;
+    private String Produto_idProduto;
     private String numMesa ;
 
     public String getIdPedidos() {
@@ -54,6 +55,14 @@ public class Pedido {
 
     public void setNumMesa(String numMesa) {
         this.numMesa = numMesa;
+    }
+
+    public String getProduto_idProduto() {
+        return Produto_idProduto;
+    }
+
+    public void setProduto_idProduto(String Produto_idProduto) {
+        this.Produto_idProduto = Produto_idProduto;
     }
 
     

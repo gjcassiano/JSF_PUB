@@ -62,6 +62,7 @@ public class PedidoDAO {
                        
                        at.setCliente_idCliente(rs.getString("cnome"));
                        at.setAtendente_idAtendente(rs.getString("anome"));
+                       at.setProduto_idProduto(rs.getString("pnome"));
                        at.setNumMesa(rs.getString(COL[5]));
 
                        this.pedidos.add(at);
@@ -80,12 +81,11 @@ public class PedidoDAO {
    
      public void SalvarPedido(){
          	try {
-			
 //			String  sqlcmd = "INSERT INTO "+TABLE_NAME +" ( "+COL[1]+ " , " + COL[2] +" , "+ COL[3]+" , "+ COL[4]+" , " + COL[5] +  ") values ('" +
 //                                this.getPedido().getHrPedido()+"','"+this.getPedido().getPedidoConcluido()+ "','" + this.getPedido().getCliente_idCliente()+ "','" + this.getPedido().getAtendente_idAtendente()+ "','" +this.getPedido().getNumMesa()+"')";
                         Pedido p = this.getPedido();
                         
-                        String sqlcmd = "CALL fazerPedido('"+ this.getPedido().getCliente_idCliente()+"','"+this.getPedido().getAtendente_idAtendente()+"'," +this.getPedido().getNumMesa() +");";
+                        String sqlcmd = "CALL fazerPedido('"+ this.getPedido().getCliente_idCliente()+"','"+this.getPedido().getAtendente_idAtendente()+"','"+this.getPedido().getProduto_idProduto()+"'," +this.getPedido().getNumMesa() +");";
                         System.out.println(sqlcmd);
                         Statement stm = AcessoDB.conexao.createStatement();
                         
@@ -98,7 +98,7 @@ public class PedidoDAO {
                     RequestContext.getCurrentInstance().showMessageInDialog(message);   
                     
                 }
-
+                
             
      }
      public String getParameter(String idToFind){
@@ -154,22 +154,36 @@ public class PedidoDAO {
          return clientes;
      }
      public List<String> getAtendentesTrabalhando(){
-              List<String> atendente = new ArrayList<String>();
+              List<String> atendentes = new ArrayList<String>();
            try {
                     Statement stmt;
                     stmt = AcessoDB.conexao.createStatement();
                     ResultSet rs = stmt.executeQuery("CALL getAtendentesTrabalhando()");
                     while(rs.next()){
-                        atendente.add(rs.getString("nome"));
+                        atendentes.add(rs.getString("nome"));
                     }
                     rs.close();
                     stmt.close();
                 } catch (SQLException ex) {
                 }
-         return atendente;
+         return atendentes;
      }
     
-        
+       public List<String> getProdutosDisponiveis(){
+              List<String> produtos = new ArrayList<String>();
+           try {
+                    Statement stmt;
+                    stmt = AcessoDB.conexao.createStatement();
+                    ResultSet rs = stmt.executeQuery("CALL getProdutosDisponiveis();");
+                    while(rs.next()){
+                        produtos.add(rs.getString("nome"));
+                    }
+                    rs.close();
+                    stmt.close();
+                } catch (SQLException ex) {
+                }
+         return produtos;
+     }
 	
 }
 

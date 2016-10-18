@@ -25,7 +25,7 @@
             <p:column headerText="Id" width="8%"  >
                    <h:outputText value="#{item.idPedidos}" />
                </p:column>
-               <p:column headerText="Hora do Pedido">
+               <p:column headerText="Horario">
                    <h:outputText value="#{item.hrPedido}" />
                </p:column>
                <p:column headerText="Cliente">
@@ -34,6 +34,11 @@
                <p:column headerText="Atendente">
                    <h:outputText value="#{item.atendente_idAtendente}" />
                </p:column>
+            
+               <p:column headerText="Produto">
+                   <h:outputText value="#{item.produto_idProduto}" />
+               </p:column>
+            
               <p:column headerText="Pedido concluido">
                   <h:outputText value="#{item.pedidoConcluido}" />
                </p:column>
@@ -47,7 +52,8 @@
                             <f:param name="idPedidos" value="#{item.idPedidos}"/>
                           </p:commandButton>
                </p:column>
-            
+
+          
              <p:column headerText="Remover" style="width: 100px; text-align: center">
                         <!--Remove pedido-->
                         <p:commandButton widgetVar="" icon="ui-icon-trash" id="ajax" process="@this" update="tableitems" action="#{pedidoDAO.RemoverPedido}" >
