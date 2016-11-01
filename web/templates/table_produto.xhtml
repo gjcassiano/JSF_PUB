@@ -48,7 +48,7 @@
 
              <p:column headerText="Remover" style="width: 100px; text-align: center">
                         <!--Remove pedido-->
-                        <p:commandButton widgetVar="" icon="ui-icon-trash" id="ajax" process="@this" update="tableitems" action="#{produtoDAO.removerProduto}" >
+                        <p:commandButton widgetVar="" icon="ui-icon-trash" id="ajax" process="@this" update="tableitems" action="#{produtoDAO.RemoverProduto}" >
                             <f:param name="idProduto" value="#{item.idProduto}"/>
                               <p:confirm header="Confirmação" message="Deseja deletar ?"/>
                           </p:commandButton>

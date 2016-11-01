@@ -24,6 +24,10 @@
             <from-outcome>clientes</from-outcome>
             <to-view-id>/indexToClientes.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>produtos</from-outcome>
+            <to-view-id>/indexToProdutos.xhtml</to-view-id>
+        </navigation-case>
         
         
     </navigation-rule>
@@ -47,6 +51,10 @@
             <from-outcome>clientes</from-outcome>
             <to-view-id>/indexToClientes.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>produtos</from-outcome>
+            <to-view-id>/indexToProdutos.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     
      <navigation-rule>
@@ -68,9 +76,13 @@
             <from-outcome>clientes</from-outcome>
             <to-view-id>/indexToClientes.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>produtos</from-outcome>
+            <to-view-id>/indexToProdutos.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     
-         <navigation-rule>
+       <navigation-rule>
        <from-view-id>/indexToClientes.xhtml</from-view-id>
         <navigation-case>
              <from-outcome>paginaprincipal</from-outcome>
@@ -89,5 +101,36 @@
             <from-outcome>clientes</from-outcome>
             <to-view-id>/indexToClientes.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>produtos</from-outcome>
+            <to-view-id>/indexToProdutos.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+       <from-view-id>/indexToProdutos.xhtml</from-view-id>
+        <navigation-case>
+             <from-outcome>paginaprincipal</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>pedidos</from-outcome>
+            <to-view-id>/indexToPedidos.xhtml</to-view-id>
+        </navigation-case> 
+
+        <navigation-case>
+            <from-outcome>atendentes</from-outcome>
+            <to-view-id>/indexToAtendentes.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>clientes</from-outcome>
+            <to-view-id>/indexToClientes.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>produtos</from-outcome>
+            <to-view-id>/indexToProdutos.xhtml</to-view-id>
+        </navigation-case>
+        
+        
     </navigation-rule>
 </faces-config>

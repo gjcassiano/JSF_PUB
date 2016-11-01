@@ -22,7 +22,9 @@
   
         
         <p:dataTable  id ="tableitems" var="item" value="#{pedidoDAO.pedidos}">
+            
             <p:column headerText="Id" width="8%"  >
+                
                    <h:outputText value="#{item.idPedidos}" />
                </p:column>
                <p:column headerText="Horario">
