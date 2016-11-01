@@ -12,17 +12,27 @@
         <h:form >
             <p:panelGrid class="ui-g-6" styleClass="no-border"  columns="2" >  
                 <h:outputLabel value="Nome"></h:outputLabel>
-                <p:inputText id ="nome" value="#{clientesDAO.cliente.nome}"/>
-                <h:outputLabel value="Hora de chegada" />
-                <p:inputMask id="hrChegada" value="#{clientesDAO.cliente.hrChegada}" mask="99:99:99"/>
-                <h:outputLabel value="Hora de saida" />
-                <p:inputMask id="hrSaida" value="#{clientesDAO.cliente.hrSaida}" mask="99:99:99"/>
-  
-                <h:outputLabel value="Forma de Pagment"></h:outputLabel>
-                <p:inputText id ="formPagmt" value="#{clientesDAO.cliente.formPagmt}"/>
+                <p:inputText id ="nome" value="#{produtoDAO.produto.nome}"/>
                 
+                
+                <h:outputLabel value="Marca"></h:outputLabel>
+                <p:inputText id ="marca" value="#{produtoDAO.produto.marca}"/>
+                
+                
+                <h:outputLabel value="Quantidade" />
+                <p:inputNumber id="quantidade" value="#{produtoDAO.produto.quantidade}" />
+         
+                 <h:outputLabel value="tipo"></h:outputLabel>
+                 <p:inputText id ="tipo" value="#{produtoDAO.produto.tipo}"/>
+                
+                 <h:outputLabel value="Codigo de barra" />
+                 <p:inputNumber id="corbarra" value="#{produtoDAO.produto.codBarra}" />
+                 
+                 <h:outputLabel value="Valor unitario" />
+                 <p:inputNumber id="valorUnitario" value="#{produtoDAO.produto.valorUnitario}" />
+                 
          </p:panelGrid>
-            <p:commandButton style="height: 35px;text-align: center " class="ui-g-12" value="Salvar" type="submit" id="ajax" update=":formtable:tableitems" action="#{clientesDAO.SalvarCliente()}" onclick="PF('dlg2').hide();"/>
+            <p:commandButton style="height: 35px;text-align: center " class="ui-g-12" value="Salvar" type="submit" id="ajax" update=":formtable:tableitems" action="#{produtoDAO.SalvarProduto()}" onclick="PF('dlg2').hide();"/>
          
         </h:form>
     </p:dialog> 

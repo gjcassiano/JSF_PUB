@@ -43,7 +43,7 @@ public class PedidoDAO {
     }
     
     public List<Pedido> getPedidos(){
-           
+       
                 try {
                     Statement stmt;
                     stmt = AcessoDB.conexao.createStatement();
@@ -91,7 +91,7 @@ public class PedidoDAO {
                         
                          stm.execute(sqlcmd);
                          stm.close();
-			 showMessage(TABLE_NAME + " salvo com sucesso!");
+			 showMessage("Pedido salvo com sucesso!");
                          
 		} catch (SQLException e) {
                           FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação", "erro ao salvar "+TABLE_NAME + e.getMessage());
@@ -113,12 +113,12 @@ public class PedidoDAO {
                 new FacesMessage(text)); 
      }
      public void RemoverPedido(){
-         try {//"DELETE FROM `mydb`.`atendente` WHERE `atendente`.`idAtendente` = 12"?
+         try {
 			String  sqlcmd =  "DELETE FROM "+TABLE_NAME +" WHERE "+COL[0]+ "= "+getParameter(COL[0])+" ;";
                         //System.out.println(sqlcmd);
                         Statement stm = AcessoDB.conexao.createStatement();
                         stm.execute(sqlcmd);
-                     showMessage(TABLE_NAME+" deletado com sucesso!");
+                     showMessage("Pedido deletado com sucesso!");
 		} catch (SQLException e) {
                      System.out.println("ERRO ao deletar!");
                     System.out.println(e.getMessage());
